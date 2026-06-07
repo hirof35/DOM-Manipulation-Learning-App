@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作サンプル</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .control-group { margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="control-group">
+        <input type="text" id="input1">
+        <button id="btn1">取得1</button>
+    </div>
+
+    <ul id="list-container">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <button id="btn7">末尾削除</button>
+
+    <script>
+        // ボタンとイベントをマッピングして管理しやすくする
+        const handlers = {
+            "btn1": () => {
+                const val = document.querySelector("#input1").value;
+                console.log(val);
+            },
+            "btn7": () => {
+                const list = document.querySelector("#list-container");
+                // lastElementChildを使うと、取得と削除が非常に楽になります
+                if (list.lastElementChild) {
+                    list.removeChild(list.lastElementChild);
+                }
+            }
+            // 他のボタンの処理もここに追加...
+        };
+
+        // イベントリスナーの一括登録
+        Object.keys(handlers).forEach(id => {
+            document.querySelector(`#${id}`)?.addEventListener("click", handlers[id]);
+        });
+    </script>
+</body>
+</html>
