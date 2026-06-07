@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text"  id="text">
+    <input id="button1" type="button" value="ボタン1"><br>
+    <input type="text"  name="hiro">
+    <input id="button2" type="button" value="ボタン2"><br>
+    <p>1</p>
+    <div>2</div>
+    <p>3</p>
+    <div>4</div>
+    <p>5</p>
+    <input id="button3" type="button" value="ボタン3"><br>
+    <ul>
+        <li class="12">1</li>
+        <li class="12">2</li>
+        <li class="1">3</li>
+        <li class="12">4</li>
+        <li class="2">5</li>
+    </ul>
+    <input id="button4" type="button" value="ボタン4"><br>
+    <ul id="lists">
+
+    </ul>
+    <input id="button5" type="button" value="ボタン5"><br>
+    <ul>
+        <li id="oldlist">old</li>
+    </ul>
+    <input id="button6" type="button" value="ボタン6"><br>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <input id="button7" type="button" value="ボタン7"><br>
+    
+    <script>
+        document.getElementById("button1").addEventListener("click",()=>{
+            const text=document.getElementById("text").value;
+            console.log(text);
+        },false);
+        document.getElementById("button2").addEventListener("click",()=>{
+            const text=document.getElementsByName("hiro");
+            console.log(text[0].value);
+        },false);
+        document.getElementById("button3").addEventListener("click",()=>{
+            const text=document.getElementsByTagName("p");
+            for(let i = 0; i < text.length; i++){
+                console.log(text[i].innerHTML);
+            }
+        },false);
+        document.getElementById("button4").addEventListener("click",()=>{
+            const text=document.getElementsByClassName("12");
+            for(let i = 0; i < text.length; i++){
+                console.log(text[i].innerHTML);
+            }
+        },false);
+        document.getElementById("button5").addEventListener("click",()=>{
+            const li=document.createElement("li");
+            const text=document.createTextNode("list");
+            li.appendChild(text);
+            const lists=document.getElementById("lists");
+            lists.appendChild(li);
+        },false);
+        document.getElementById("button6").addEventListener("click",()=>{
+            const newlist=document.createElement("li");
+            const li=document.createTextNode("new");
+            newlist.appendChild(li);
+            const oldlist=document.getElementById("oldlist");
+            const parentNode=oldlist.parentNode;
+            parentNode.replaceChild(newlist,oldlist);
+        },false);
+
+        document.getElementById("button7").addEventListener("click",()=>{
+            const li=document.getElementsByTagName("li");
+            const length=li.length-1;
+            const list=document.getElementById("list");
+            list.removeChild(li[length]);
+        },false);
+    </script>
+</body>
+</html>
